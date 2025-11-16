@@ -1,0 +1,90 @@
+<div class="bg-coffee-100 min-h-screen font-sans">
+  
+  <!-- Hero Section -->
+  <section class="relative bg-coffee-800 text-white py-20 sm:py-32">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&h=900&q=80" alt="Coffee beans" class="w-full h-full object-cover opacity-30"/>
+    </div>
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <h1 class="text-4xl md:text-6xl font-serif font-bold mb-4">Bem-vindo ao Sid Café</h1>
+      <p class="text-lg md:text-xl max-w-3xl mx-auto text-coffee-100">Onde cada grão conta uma história e cada xícara é um convite ao bem-estar.</p>
+    </div>
+  </section>
+
+  <!-- Nossa História Section -->
+  <section class="py-16 sm:py-24 bg-coffee-100">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="text-coffee-800">
+          <h2 class="text-3xl font-serif font-bold text-coffee-900 mb-4">Nossa História</h2>
+          <p class="mb-4 text-lg leading-relaxed">Nascido da paixão por cafés especiais e o desejo de criar um espaço acolhedor, o Sid Café abriu suas portas em 2020. Nossa missão é simples: servir o melhor café, preparado com grãos selecionados de produtores locais, em um ambiente que te faça sentir em casa.</p>
+          <p class="text-lg leading-relaxed">Acreditamos que o café é mais do que uma bebida; é uma experiência. Por isso, cuidamos de cada detalhe, desde a torra dos grãos até a arte no seu latte, para garantir que sua visita seja memorável.</p>
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Interior do Sid Café" class="rounded-lg shadow-2xl w-full h-auto object-cover"/>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Características Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-serif font-bold text-coffee-900">Por que escolher o Sid Café?</h2>
+        <p class="text-lg text-coffee-800 mt-2">Qualidade e experiência em cada detalhe.</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Card 1 -->
+        <mat-card class="h-full text-center hover:shadow-xl transition-shadow duration-300">
+          <mat-card-content class="p-8">
+            <div class="bg-coffee-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+              <mat-icon class="text-white text-3xl">local_cafe</mat-icon>
+            </div>
+            <h3 class="text-xl font-serif font-bold text-coffee-900 mb-3">Grãos Premium</h3>
+            <p class="text-coffee-800">Seleção cuidadosa de grãos especiais de produtores locais e internacionais.</p>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- Card 2 -->
+        <mat-card class="h-full text-center hover:shadow-xl transition-shadow duration-300">
+          <mat-card-content class="p-8">
+            <div class="bg-coffee-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+              <mat-icon class="text-white text-3xl">favorite</mat-icon>
+            </div>
+            <h3 class="text-xl font-serif font-bold text-coffee-900 mb-3">Ambiente Acolhedor</h3>
+            <p class="text-coffee-800">Espaço confortável e aconchegante para relaxar e aproveitar bons momentos.</p>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- Card 3 -->
+        <mat-card class="h-full text-center hover:shadow-xl transition-shadow duration-300">
+          <mat-card-content class="p-8">
+            <div class="bg-coffee-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+              <mat-icon class="text-white text-3xl">stars</mat-icon>
+            </div>
+            <h3 class="text-xl font-serif font-bold text-coffee-900 mb-3">Experiência Única</h3>
+            <p class="text-coffee-800">Cada xícara é preparada com arte e paixão pelos nossos baristas especializados.</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section class="bg-coffee-800 py-16">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-serif font-bold text-white mb-4">Pronto para uma experiência única?</h2>
+      <p class="text-coffee-100 mb-8 text-lg">Venha conhecer nossos cafés especiais e sabores únicos.</p>
+      <div class="space-x-4">
+        <button mat-raised-button routerLink="/cardapio" class="bg-coffee-500 text-white hover:bg-coffee-200 hover:text-coffee-900 transition-colors px-8 py-3 text-lg">
+          Ver Cardápio
+        </button>
+        <button mat-stroked-button class="border-coffee-100 text-coffee-100 hover:bg-coffee-100 hover:text-coffee-900 transition-colors px-8 py-3 text-lg">
+          Fale Conosco
+        </button>
+      </div>
+    </div>
+  </section>
+</div>

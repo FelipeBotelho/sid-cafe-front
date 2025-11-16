@@ -1,0 +1,56 @@
+<header 
+  [class]="'fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ' + 
+    (isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg h-16' : 'bg-coffee-100 shadow-md h-20')">
+  <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div [class]="'flex items-center justify-between transition-all duration-300 ' + 
+      (isScrolled ? 'h-16' : 'h-20')">
+      <!-- Logo -->
+      <a routerLink="/" class="flex items-center space-x-2 cursor-pointer transition-transform hover:scale-105">
+        <mat-icon [class]="'transition-all duration-300 ' + 
+          (isScrolled ? 'text-coffee-900 text-xl' : 'text-coffee-800 text-2xl')">local_cafe</mat-icon>
+        <span [class]="'font-serif font-bold text-coffee-900 transition-all duration-300 ' + 
+          (isScrolled ? 'text-xl' : 'text-2xl')">Sid Café</span>
+      </a>
+      
+      <!-- Navigation -->
+      <div class="hidden md:flex items-center space-x-4">
+        <a routerLink="/" 
+           routerLinkActive="bg-coffee-200 text-coffee-900 font-semibold" 
+           [routerLinkActiveOptions]="{exact: true}" 
+           class="flex items-center space-x-2 text-coffee-800 hover:text-coffee-900 transition-all duration-200 px-3 py-2 rounded-md hover:bg-coffee-50">
+          <mat-icon [class]="isScrolled ? 'text-base' : 'text-lg'">home</mat-icon>
+          <span>Início</span>
+        </a>
+        <a routerLink="/cardapio" 
+           routerLinkActive="bg-coffee-200 text-coffee-900 font-semibold" 
+           class="flex items-center space-x-2 text-coffee-800 hover:text-coffee-900 transition-all duration-200 px-3 py-2 rounded-md hover:bg-coffee-50">
+          <mat-icon [class]="isScrolled ? 'text-base' : 'text-lg'">restaurant_menu</mat-icon>
+          <span>Cardápio</span>
+        </a>
+        <a routerLink="/admin" 
+           mat-raised-button 
+           class="bg-coffee-800 text-white hover:bg-coffee-900 transition-all duration-200 px-4 py-2 rounded-full hover:shadow-lg transform hover:scale-105">
+          <mat-icon [class]="'mr-2 ' + (isScrolled ? 'text-base' : 'text-lg')">person</mat-icon>
+          <span>Área Restrita</span>
+        </a>
+      </div>
+
+      <!-- Mobile menu button -->
+      <button class="md:hidden p-2 rounded-md text-coffee-800 hover:text-coffee-900 hover:bg-coffee-50 transition-colors">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- Spacer para compensar o header fixo -->
+<div [class]="'transition-all duration-300 ' + (isScrolled ? 'h-16' : 'h-20')"></div>
+
+<!-- Botão Voltar ao Topo -->
+<button 
+  *ngIf="showScrollTop"
+  (click)="scrollToTop()"
+  class="scroll-to-top fixed bottom-6 right-6 z-50 bg-coffee-800 hover:bg-coffee-900 text-white p-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 hover:shadow-xl"
+  aria-label="Voltar ao topo">
+  <mat-icon class="text-xl">keyboard_arrow_up</mat-icon>
+</button>
