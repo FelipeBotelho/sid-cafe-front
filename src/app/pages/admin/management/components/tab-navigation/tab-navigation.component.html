@@ -1,0 +1,16 @@
+<div class="border-b border-coffee-500">
+  <nav class="-mb-px flex space-x-6">
+    @for (tab of tabs; track tab.id) {
+      <button
+        (click)="onTabClick(tab.id)"
+        class="flex items-center space-x-2 py-4 px-1 border-b-2 font-medium text-lg"
+        [class]="activeTab === tab.id 
+          ? 'border-coffee-800 text-coffee-900' 
+          : 'border-transparent text-coffee-500 hover:text-coffee-800 hover:border-coffee-500'"
+      >
+        <mat-icon class="w-5 h-5">{{ tab.icon }}</mat-icon>
+        <span>{{ tab.label }}</span>
+      </button>
+    }
+  </nav>
+</div>

@@ -1,0 +1,67 @@
+// Dashboard specific styles
+.text-coffee-900 {
+  color: #3C2A21;
+}
+
+.text-coffee-800 {
+  color: #4B3731;
+}
+
+.text-coffee-700 {
+  color: #785A4E;
+}
+
+.text-coffee-600 {
+  color: #8B6B5B;
+}
+
+.text-coffee-500 {
+  color: #A0836D;
+}
+
+.text-coffee-400 {
+  color: #B5977F;
+}
+
+.bg-coffee-50 {
+  background-color: #FDFBF7;
+}
+
+// Stats cards hover effect
+.bg-white:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+// Icon colors
+.text-green-500 {
+  color: #10B981;
+}
+
+.text-blue-500 {
+  color: #3B82F6;
+}
+
+.text-purple-500 {
+  color: #8B5CF6;
+}
+
+.text-red-500 {
+  color: #EF4444;
+}
+
+// Grid responsive
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .lg\:grid-cols-3 {
+    grid-template-columns: 1fr;
+  }
+}

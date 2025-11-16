@@ -1,0 +1,10 @@
+// Component-specific styles only
+// All coffee theme colors and utilities are handled by Tailwind CSS config
+
+.space-x-6 > :not([hidden]) ~ :not([hidden]) {
+  margin-left: 1.5rem;
+}
+
+.space-y-6 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 1.5rem;
+}

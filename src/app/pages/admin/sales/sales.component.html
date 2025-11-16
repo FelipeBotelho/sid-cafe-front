@@ -1,0 +1,26 @@
+<div class="space-y-6">
+  <!-- Header -->
+  <div class="flex justify-between items-center">
+    <h1 class="text-3xl font-bold text-coffee-900">Gerenciamento de Vendas</h1>
+    <button 
+      (click)="onNewSale()"
+      class="inline-flex items-center justify-center px-3 py-1.5 text-sm rounded-md font-semibold bg-coffee-800 text-white hover:bg-coffee-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-coffee-800 transition-colors"
+    >
+      <mat-icon class="w-4 h-4 mr-2">add_circle</mat-icon>
+      Nova Venda
+    </button>
+  </div>
+
+  <!-- Sales Table -->
+  <app-sales-table
+    [sales]="sales"
+    (statusChange)="onStatusChange($event)"
+  ></app-sales-table>
+
+  <!-- New Sale Modal -->
+  @if (showNewSaleModal) {
+    <app-new-sale-modal
+      (closeModal)="onModalClose($event)"
+    ></app-new-sale-modal>
+  }
+</div>

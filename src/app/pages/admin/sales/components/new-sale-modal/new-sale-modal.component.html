@@ -1,0 +1,57 @@
+<div class="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center">
+  <div class="bg-coffee-100 rounded-lg shadow-xl w-full max-w-6xl max-h-[90vh] m-4 overflow-hidden">
+    <!-- Header -->
+    <div class="flex justify-between items-center p-4 border-b border-coffee-200">
+      <h3 class="text-xl font-bold text-coffee-900">Criar Nova Venda</h3>
+      <button (click)="onCancel()" class="text-coffee-500 hover:text-coffee-900">
+        <mat-icon class="w-6 h-6">close</mat-icon>
+      </button>
+    </div>
+
+    <!-- Content -->
+    <div class="p-6 overflow-auto max-h-[calc(90vh-140px)]">
+      <div class="grid grid-cols-3 gap-6 min-h-[500px]">
+        
+        <!-- Product Selection Column (2/3 width) -->
+        <div class="col-span-2">
+          <app-product-selector
+            [products]="products"
+            [categories]="categories"
+            (addToCart)="onAddToCart($event)"
+          ></app-product-selector>
+        </div>
+        
+        <!-- Shopping Cart Column (1/3 width) -->
+        <div class="col-span-1">
+          <app-shopping-cart
+            [cartItems]="cart"
+            [products]="products"
+            (removeFromCart)="onRemoveFromCart($event)"
+            (updateQuantity)="onUpdateQuantity($event)"
+          ></app-shopping-cart>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="flex justify-end space-x-2 p-4 border-t border-coffee-200 bg-coffee-50">
+      <button 
+        (click)="onCancel()"
+        [disabled]="loading"
+        class="inline-flex items-center justify-center px-4 py-2 text-base rounded-md font-semibold bg-coffee-200 text-coffee-900 hover:bg-coffee-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-coffee-500 transition-colors"
+      >
+        Cancelar
+      </button>
+      
+      <button 
+        (click)="onSubmit()"
+        [disabled]="!hasItems || loading"
+        class="inline-flex items-center justify-center px-4 py-2 text-base rounded-md font-semibold bg-coffee-800 text-white hover:bg-coffee-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-coffee-800 transition-colors"
+      >
+        <mat-icon *ngIf="loading" class="animate-spin mr-2">refresh</mat-icon>
+        {{ loading ? 'Criando...' : 'Criar Venda' }}
+      </button>
+    </div>
+  </div>
+</div>

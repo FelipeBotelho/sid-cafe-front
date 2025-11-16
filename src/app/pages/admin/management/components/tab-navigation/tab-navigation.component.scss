@@ -1,0 +1,8 @@
+// Utility spacing classes for better component isolation
+.space-x-6 > :not([hidden]) ~ :not([hidden]) {
+  margin-left: 1.5rem;
+}
+
+.space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  margin-left: 0.5rem;
+}

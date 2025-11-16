@@ -1,20 +1,101 @@
-<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-  <div class="text-center mb-12">
-    <h1 class="text-4xl font-serif font-bold text-coffee-900">Área Administrativa</h1>
-    <p class="text-lg text-coffee-800 mt-2">Painel de controle do Sid Café</p>
+<div class="space-y-8">
+  
+  <!-- Header -->
+  <h1 class="text-3xl font-bold text-coffee-900">Dashboard</h1>
+
+  <!-- Stats Cards -->
+  <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+    
+    <!-- Receita Hoje -->
+    <div class="bg-white rounded-xl shadow-md p-6">
+      <div class="flex items-center justify-between">
+        <h3 class="text-sm font-medium text-coffee-500">Receita (Hoje)</h3>
+        <mat-icon class="text-green-500">attach_money</mat-icon>
+      </div>
+      <div class="mt-4">
+        <p class="text-3xl font-bold text-coffee-900">{{ stats.revenueToday | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</p>
+        <p class="text-xs text-coffee-500 mt-1">Total de vendas concluídas hoje</p>
+      </div>
+    </div>
+
+    <!-- Vendas Hoje -->
+    <div class="bg-white rounded-xl shadow-md p-6">
+      <div class="flex items-center justify-between">
+        <h3 class="text-sm font-medium text-coffee-500">Vendas (Hoje)</h3>
+        <mat-icon class="text-blue-500">shopping_cart</mat-icon>
+      </div>
+      <div class="mt-4">
+        <p class="text-3xl font-bold text-coffee-900">+{{ stats.salesToday }}</p>
+        <p class="text-xs text-coffee-500 mt-1">Número de vendas concluídas hoje</p>
+      </div>
+    </div>
+
+    <!-- Produto Mais Vendido -->
+    <div class="bg-white rounded-xl shadow-md p-6">
+      <div class="flex items-center justify-between">
+        <h3 class="text-sm font-medium text-coffee-500">Mais Vendidos (Mês)</h3>
+        <mat-icon class="text-purple-500">trending_up</mat-icon>
+      </div>
+      <div class="mt-4">
+        <p class="text-3xl font-bold text-coffee-900">{{ stats.topProduct || 'N/A' }}</p>
+        <p class="text-xs text-coffee-500 mt-1">Produto com mais vendas nos últimos 30 dias</p>
+      </div>
+    </div>
+
+    <!-- Itens Sem Estoque -->
+    <div class="bg-white rounded-xl shadow-md p-6">
+      <div class="flex items-center justify-between">
+        <h3 class="text-sm font-medium text-coffee-500">Itens sem Estoque</h3>
+        <mat-icon class="text-red-500">inventory</mat-icon>
+      </div>
+      <div class="mt-4">
+        <p class="text-3xl font-bold text-coffee-900">{{ stats.outOfStock }}</p>
+        <p class="text-xs text-coffee-500 mt-1">Produtos que precisam de reposição</p>
+      </div>
+    </div>
+
   </div>
 
-  <!-- Admin Dashboard será implementado aqui -->
-  <div class="text-center py-16">
-    <mat-card class="max-w-md mx-auto">
-      <mat-card-content class="p-8">
-        <mat-icon class="text-coffee-500 text-6xl mb-4">admin_panel_settings</mat-icon>
-        <h2 class="text-2xl font-serif font-bold text-coffee-900 mb-4">Em Desenvolvimento</h2>
-        <p class="text-coffee-800 mb-6">A área administrativa está sendo desenvolvida.</p>
-        <button mat-raised-button color="primary" routerLink="/">
-          Voltar ao Início
-        </button>
-      </mat-card-content>
-    </mat-card>
+  <!-- Charts and Recent Sales -->
+  <div class="grid gap-6 lg:grid-cols-3">
+    
+    <!-- Chart Area -->
+    <div class="lg:col-span-2">
+      <div class="bg-white rounded-xl shadow-md p-6">
+        <h3 class="text-xl font-bold text-coffee-900 mb-4">Produtos Mais Vendidos (Últimos 30 dias)</h3>
+        <div class="h-96 flex items-center justify-center bg-coffee-50 rounded-lg">
+          <div class="text-center">
+            <mat-icon class="text-6xl text-coffee-500 mb-4">bar_chart</mat-icon>
+            <p class="text-coffee-700">Gráfico será implementado com dados reais</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Sales -->
+    <div class="lg:col-span-1">
+      <div class="bg-white rounded-xl shadow-md p-6">
+        <h3 class="text-xl font-bold text-coffee-900 mb-4">Vendas Recentes</h3>
+        <div class="space-y-4">
+          @for (sale of recentSales; track sale.id) {
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="font-semibold text-coffee-800">{{ sale.productName }}</p>
+                <p class="text-sm text-coffee-500">#{{ sale.id }}</p>
+              </div>
+              <p class="font-bold text-coffee-900">{{ sale.total | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</p>
+            </div>
+          }
+          @if (recentSales.length === 0) {
+            <div class="text-center py-8">
+              <mat-icon class="text-4xl text-coffee-400 mb-2">receipt</mat-icon>
+              <p class="text-coffee-600">Nenhuma venda recente</p>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+
   </div>
+
 </div>

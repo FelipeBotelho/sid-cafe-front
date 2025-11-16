@@ -1,0 +1,38 @@
+<div class="space-y-6">
+  <h1 class="text-3xl font-bold text-coffee-900">Gerenciamento Geral</h1>
+  
+  <!-- Tab Navigation Component -->
+  <app-tab-navigation 
+    [tabs]="tabs" 
+    [activeTab]="activeTab" 
+    (tabChange)="onTabChange($event)">
+  </app-tab-navigation>
+
+  <div class="mt-6">
+    <!-- Products Tab -->
+    @if (activeTab === 'products') {
+      <app-product-table 
+        [products]="products"
+        [availableCategories]="availableCategories"
+        (onEdit)="onProductEdit($event)"
+        (onDelete)="onProductDelete($event)"
+        (onCreateProduct)="onProductCreate($event)">
+      </app-product-table>
+    }
+
+    <!-- Categories Tab -->
+    @if (activeTab === 'categories') {
+      <app-category-table 
+        [categories]="availableCategories"
+        (onEdit)="onCategoryEdit($event)"
+        (onDelete)="onCategoryDelete($event)"
+        (onCreate)="onCategoryCreate($event)">
+      </app-category-table>
+    }
+
+    <!-- Users Tab -->
+    @if (activeTab === 'users') {
+      <app-user-table [users]="mockUsers"></app-user-table>
+    }
+  </div>
+</div>

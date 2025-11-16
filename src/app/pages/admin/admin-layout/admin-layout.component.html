@@ -1,0 +1,50 @@
+<div class="admin-layout">
+  <!-- Header -->
+  <app-header />
+  
+  <div class="flex bg-coffee-200 font-sans" style="height: calc(100vh - 80px);">
+    
+    <!-- Sidebar -->
+    <aside
+      class="w-64 bg-coffee-800 text-coffee-100 flex flex-col fixed z-10"
+      style="height: calc(100vh - 80px); top: 80px;"
+    >
+      <!-- Admin Title -->
+      <div
+        class="flex items-center justify-center h-16 border-b border-coffee-900"
+      >
+        <mat-icon class="text-2xl">dashboard</mat-icon>
+        <span class="ml-2 text-lg font-bold font-serif">Admin Panel</span>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="flex-1 px-3 py-4">
+        @for (item of navItems; track item.path) {
+        <a
+          [routerLink]="item.path"
+          routerLinkActive="bg-coffee-900 font-semibold"
+          [routerLinkActiveOptions]="{ exact: item.exact }"
+          class="flex items-center p-3 my-2 rounded-lg text-coffee-100 hover:bg-coffee-700 transition-colors"
+        >
+          <mat-icon class="mr-3">{{ item.icon }}</mat-icon>
+          {{ item.label }}
+        </a>
+        }
+        <a
+          (click)="logout()"
+          class="flex items-center p-3 my-2 rounded-lg text-coffee-100 hover:bg-coffee-700 transition-colors"
+        >
+          <mat-icon class="mr-2" style="color: white !important">logout</mat-icon>
+          Sair
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 ml-64 overflow-y-auto" style="height: calc(100vh - 80px);">
+      <div class="p-6 min-h-full">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
+</div>

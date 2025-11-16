@@ -1,0 +1,84 @@
+<div class="bg-white rounded-xl shadow-md overflow-hidden">
+  <div class="p-4 border-b flex justify-between items-center">
+    <h2 class="text-xl font-bold text-coffee-900">Categorias</h2>
+    <button 
+      (click)="openCategoryDialog()"
+      class="inline-flex items-center justify-center px-3 py-1.5 text-sm rounded-md font-semibold bg-coffee-800 text-white hover:bg-coffee-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-coffee-800 transition-colors"
+    >
+      <mat-icon class="w-4 h-4 mr-2">add_circle</mat-icon>
+      Adicionar
+    </button>
+  </div>
+  <div class="overflow-x-auto">
+    <table class="w-full text-left">
+      <thead class="bg-coffee-100">
+        <tr>
+          <th class="p-4 font-bold text-coffee-800">Nome</th>
+          <th class="p-4 font-bold text-coffee-800">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (category of categories; track category.id) {
+          <tr class="border-t">
+            <td class="p-4">{{ category.name }}</td>
+            <td class="p-4 space-x-2">
+              <button 
+                (click)="openCategoryDialog(category)"
+                class="inline-flex items-center justify-center px-3 py-1.5 text-sm rounded-md font-semibold hover:bg-coffee-200 text-coffee-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-coffee-500 transition-colors"
+              >
+                <mat-icon class="w-4 h-4">edit</mat-icon>
+              </button>
+              <button 
+                (click)="deleteCategory(category)"
+                class="inline-flex items-center justify-center px-3 py-1.5 text-sm rounded-md font-semibold hover:bg-coffee-200 text-coffee-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-coffee-500 transition-colors"
+              >
+                <mat-icon class="w-4 h-4 text-red-600">delete</mat-icon>
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Category Modal -->
+@if (showCategoryDialog) {
+  <div class="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center" (click)="closeCategoryDialog()">
+    <div class="bg-coffee-100 rounded-lg shadow-xl w-full max-w-md m-4" (click)="$event.stopPropagation()">
+      <div class="flex justify-between items-center p-4 border-b border-coffee-200">
+        <h3 class="text-xl font-bold text-coffee-900">
+          {{ isEditingCategory ? 'Editar Categoria' : 'Nova Categoria' }}
+        </h3>
+        <button (click)="closeCategoryDialog()" class="text-coffee-500 hover:text-coffee-900">
+          <mat-icon class="w-6 h-6">close</mat-icon>
+        </button>
+      </div>
+      <div class="p-6">
+        <div>
+          <label class="block text-sm font-medium text-coffee-800 mb-1">Nome da Categoria</label>
+          <input
+            [(ngModel)]="categoryForm.name"
+            type="text"
+            class="w-full px-3 py-2 border border-coffee-200 rounded-md shadow-sm focus:outline-none focus:ring-coffee-500 focus:border-coffee-500"
+            required
+          >
+        </div>
+        <div class="mt-6 flex justify-end space-x-2">
+          <button
+            (click)="closeCategoryDialog()"
+            class="inline-flex items-center justify-center px-4 py-2 text-base rounded-md font-semibold bg-coffee-200 text-coffee-900 hover:bg-coffee-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-coffee-500 transition-colors"
+          >
+            Cancelar
+          </button>
+          <button
+            (click)="saveCategory()"
+            class="inline-flex items-center justify-center px-4 py-2 text-base rounded-md font-semibold bg-coffee-800 text-white hover:bg-coffee-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-coffee-800 transition-colors"
+          >
+            {{ isEditingCategory ? 'Salvar' : 'Criar' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}

@@ -1,5 +1,0 @@
-{
-  "name": "Sid Café Management System",
-  "description": "A comprehensive management system for Sid Café, featuring a public-facing dashboard with menu and information, and a secure admin area for managing products, categories, sales, and viewing key business analytics.",
-  "requestFramePermissions": []
-}

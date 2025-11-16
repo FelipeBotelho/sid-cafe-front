@@ -1,0 +1,65 @@
+<div class="bg-coffee-200 rounded-xl p-4 flex flex-col h-full">
+  <h4 class="text-xl font-bold text-coffee-900 mb-4">Itens da Venda</h4>
+  
+  <!-- Empty Cart State -->
+  <div *ngIf="cartItems.length === 0" class="flex-grow flex items-center justify-center">
+    <div class="text-center text-coffee-500">
+      <mat-icon class="text-4xl mb-2">shopping_cart</mat-icon>
+      <p class="text-sm">O carrinho está vazio</p>
+      <p class="text-xs mt-1">Adicione produtos para começar a venda</p>
+    </div>
+  </div>
+
+  <!-- Cart Items -->
+  <div *ngIf="cartItems.length > 0" class="flex-grow overflow-y-auto space-y-3 mb-4">
+    <div 
+      *ngFor="let item of cartDetails" 
+      class="bg-white rounded-lg p-3 shadow-sm"
+    >
+      <div class="flex justify-between items-start mb-2">
+        <h6 class="text-sm font-semibold text-coffee-900">{{ item.name }}</h6>
+        <button
+          (click)="onRemoveFromCart(item.productId)"
+          [attr.aria-label]="'Remover ' + item.name"
+          class="text-red-500 hover:text-red-700 focus:outline-none"
+        >
+          <mat-icon class="text-sm">delete</mat-icon>
+        </button>
+      </div>
+      
+      <div class="flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+          <button
+            (click)="onDecreaseQuantity(item.productId)"
+            [disabled]="item.quantity <= 1"
+            class="inline-flex items-center justify-center w-6 h-6 text-xs rounded-md bg-coffee-200 text-coffee-800 hover:bg-coffee-300 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <mat-icon class="text-sm">remove</mat-icon>
+          </button>
+          
+          <span class="text-sm font-medium text-coffee-800 px-2">{{ item.quantity }}</span>
+          
+          <button
+            (click)="onIncreaseQuantity(item.productId)"
+            class="inline-flex items-center justify-center w-6 h-6 text-xs rounded-md bg-coffee-200 text-coffee-800 hover:bg-coffee-300 focus:outline-none"
+          >
+            <mat-icon class="text-sm">add</mat-icon>
+          </button>
+        </div>
+        
+        <div class="text-right">
+          <p class="text-xs text-coffee-500">{{ formatCurrency(item.price) }} × {{ item.quantity }}</p>
+          <p class="text-sm font-bold text-coffee-800">{{ formatCurrency(item.subtotal) }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Total -->
+  <div *ngIf="cartItems.length > 0" class="border-t border-coffee-300 pt-4">
+    <div class="flex justify-between items-center">
+      <span class="text-lg font-bold text-coffee-900">Total:</span>
+      <span class="text-xl font-bold text-coffee-900">{{ formatCurrency(total) }}</span>
+    </div>
+  </div>
+</div>
