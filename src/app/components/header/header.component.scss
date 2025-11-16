@@ -21,6 +21,13 @@
 /* Animação do botão scroll to top */
 .scroll-to-top {
   animation: fadeInUp 0.3s ease-out;
+  background-color: #4B3731 !important; // coffee-800
+  
+  &:hover {
+    background-color: #3C2A21 !important; // coffee-900
+    transform: scale(1.1) !important;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+  }
 }
 
 @keyframes fadeInUp {
@@ -32,4 +39,36 @@
     opacity: 1;
     transform: translateY(0) scale(1);
   }
+}
+
+// Override Angular Material button styles for header
+.mat-mdc-raised-button {
+  &.admin-button {
+    background-color: #4B3731 !important; // coffee-800
+    color: white !important;
+    border: none !important;
+    border-radius: 6px !important; // rounded-md como os outros
+    padding: 8px 12px !important;
+    
+    &:hover {
+      background-color: #3C2A21 !important; // coffee-900
+      transform: translateY(-1px) !important; // mesmo efeito dos outros links
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+    }
+    
+    &:not(:disabled) {
+      background-color: #4B3731 !important;
+    }
+    
+    .mat-icon {
+      margin-right: 8px !important;
+    }
+  }
+}
+
+// Navigation link active state
+.nav-link-active {
+  background-color: #E8DFCA !important; // coffee-200
+  color: #3C2A21 !important; // coffee-900
+  font-weight: 600 !important;
 }

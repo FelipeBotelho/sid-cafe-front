@@ -1,20 +1,142 @@
-<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-  <div class="text-center mb-12">
-    <h1 class="text-4xl font-serif font-bold text-coffee-900">Nosso Cardápio</h1>
-    <p class="text-lg text-coffee-800 mt-2">Feito com carinho para você.</p>
-  </div>
+<div class="bg-coffee-100 min-h-screen py-8">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    
+    <!-- Header da página -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-serif font-bold text-coffee-900 mb-4">Nosso Cardápio</h1>
+      <p class="text-lg text-coffee-800 max-w-2xl mx-auto">
+        Feito com carinho para você. Descubra nossos sabores únicos preparados com ingredientes selecionados.
+      </p>
+    </div>
 
-  <!-- Menu será implementado aqui -->
-  <div class="text-center py-16">
-    <mat-card class="max-w-md mx-auto">
-      <mat-card-content class="p-8">
-        <mat-icon class="text-coffee-500 text-6xl mb-4">restaurant_menu</mat-icon>
-        <h2 class="text-2xl font-serif font-bold text-coffee-900 mb-4">Em Construção</h2>
-        <p class="text-coffee-800 mb-6">Nossa página de cardápio está sendo preparada com carinho.</p>
-        <button mat-raised-button color="primary" routerLink="/">
-          Voltar ao Início
-        </button>
-      </mat-card-content>
-    </mat-card>
+    <!-- Loading state -->
+    @if (loading) {
+      <div class="text-center py-16">
+        <mat-icon class="text-coffee-500 text-6xl mb-4 animate-spin">refresh</mat-icon>
+        <p class="text-coffee-800">Carregando cardápio...</p>
+      </div>
+    }
+
+    <!-- Menu por categorias -->
+    @if (!loading && groupedMenu.length > 0) {
+      <div class="space-y-16">
+        @for (category of groupedMenu; track category.id) {
+          <section 
+            class="scroll-mt-24"
+            [id]="'categoria-' + category.id">
+            
+            <!-- Header da categoria -->
+            <div class="text-center mb-8">
+              <h2 class="text-3xl font-serif font-bold text-coffee-900 mb-2">{{ category.name }}</h2>
+              <div class="w-24 h-1 bg-coffee-500 mx-auto mb-4 rounded-full"></div>
+              @if (category.description) {
+                <p class="text-coffee-800 text-lg">{{ category.description }}</p>
+              }
+            </div>
+
+            <!-- Grid de produtos -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              @for (product of category.products; track product.id) {
+                <mat-card 
+                  class="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group"
+                  [class.opacity-75]="!product.available">
+                  
+                  <!-- Imagem do produto -->
+                  <div class="relative overflow-hidden h-56">
+                    <img 
+                      [src]="product.imageUrl" 
+                      [alt]="product.name" 
+                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      loading="lazy">
+                    
+                    <!-- Overlay para produto indisponível -->
+                    @if (!product.available) {
+                      <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center">
+                        <span class="bg-red-600 text-white px-4 py-2 rounded-full font-semibold text-sm flex items-center">
+                          <mat-icon class="text-sm mr-1 flex items-center">cancel</mat-icon>
+                          Indisponível
+                        </span>
+                      </div>
+                    }
+
+                    <!-- Badge de estoque baixo -->
+                    @if (product.available && product.stock < 10 && product.stock > 0) {
+                      <div class="absolute top-3 right-3">
+                        <span class="bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center">
+                          <mat-icon class="text-xs x`!flex !items-center">warning</mat-icon>
+                          Últimas unidades
+                        </span>
+                      </div>
+                    }
+                  </div>
+
+                  <!-- Conteúdo do card -->
+                  <mat-card-content class="p-6">
+                    <div class="space-y-3">
+                      <!-- Nome e descrição -->
+                      <div>
+                        <h3 class="text-xl font-bold font-serif text-coffee-900 mb-2 line-clamp-2">
+                          {{ product.name }}
+                        </h3>
+                        <p class="text-coffee-700 text-sm leading-relaxed line-clamp-3">
+                          {{ product.description }}
+                        </p>
+                      </div>
+
+                      <!-- Preço e ações -->
+                      <div class="flex justify-between items-center pt-4">
+                        <span class="text-2xl font-bold text-coffee-800">
+                          {{ formatPrice(product.price) }}
+                        </span>
+                      </div>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              }
+            </div>
+          </section>
+        }
+      </div>
+    }
+
+    <!-- Estado vazio -->
+    @if (!loading && groupedMenu.length === 0) {
+      <div class="text-center py-16">
+        <mat-card class="max-w-md mx-auto">
+          <mat-card-content class="p-8">
+            <mat-icon class="text-coffee-500 text-6xl mb-4">restaurant_menu</mat-icon>
+            <h2 class="text-2xl font-serif font-bold text-coffee-900 mb-4">Cardápio em Construção</h2>
+            <p class="text-coffee-800 mb-6">Estamos preparando nosso cardápio com muito carinho.</p>
+            <button mat-raised-button color="primary" routerLink="/">
+              <mat-icon class="mr-2">home</mat-icon>
+              Voltar ao Início
+            </button>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    }
+
+    <!-- Call to Action -->
+    @if (!loading && groupedMenu.length > 0) {
+      <div class="text-center mt-16 pt-8 border-t border-coffee-300">
+        <h3 class="text-2xl font-serif font-bold text-coffee-900 mb-4">
+          Gostou do nosso cardápio?
+        </h3>
+        <p class="text-coffee-800 mb-6 max-w-xl mx-auto">
+          Venha nos visitar e prove esses sabores únicos. Nossa equipe está pronta para te atender!
+        </p>
+        <div class="space-x-4">
+          <button mat-raised-button class="cta-location-button">
+            <mat-icon class="mr-2">place</mat-icon>
+            Como Chegar
+          </button>
+          <button mat-stroked-button class="cta-contact-button">
+            <mat-icon class="mr-2">phone</mat-icon>
+            Fale Conosco
+          </button>
+        </div>
+      </div>
+    }
+
   </div>
 </div>

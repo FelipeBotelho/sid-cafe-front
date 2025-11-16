@@ -1,0 +1,45 @@
+// Override Angular Material button styles
+.mat-mdc-raised-button {
+  &.coffee-button {
+    background-color: #785A4E !important; // coffee-500
+    color: white !important;
+    border: none !important;
+    
+    &:hover {
+      background-color: #E8DFCA !important; // coffee-200
+      color: #3C2A21 !important; // coffee-900
+    }
+    
+    &:not(:disabled) {
+      background-color: #785A4E !important;
+    }
+  }
+}
+
+.mat-mdc-outlined-button {
+  &.coffee-outlined-button {
+    border-color: #F5EFE6 !important; // coffee-100
+    color: #F5EFE6 !important;
+    background-color: transparent !important;
+    
+    &:hover {
+      background-color: #F5EFE6 !important;
+      color: #3C2A21 !important; // coffee-900
+      border-color: #F5EFE6 !important;
+    }
+  }
+}
+
+// Ensure proper spacing and sizing
+.cta-button {
+  padding: 12px 32px !important;
+  font-size: 1.125rem !important;
+  border-radius: 8px !important;
+  font-weight: 500 !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  
+  .mat-icon {
+    margin-right: 8px !important;
+  }
+}
